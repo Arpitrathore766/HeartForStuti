@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For You</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffdee9 0%, #b5b5f1 100%);
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Heart animation styles */
+        .heart-container {
+            cursor: pointer;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .heart-container:hover {
+            transform: scale(1.1);
+        }
+        .heart {
+            position: absolute;
+            width: 100px;
+            height: 160px;
+            background: #ff4d4d;
+            border-radius: 50px 50px 0 0;
+            transform-origin: bottom center;
+            transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .heart.left {
+            left: 50px;
+            transform: rotate(-45deg);
+        }
+        .heart.right {
+            right: 50px;
+            transform: rotate(45deg);
+        }
+        .heart-container.open .heart.left {
+            transform: rotate(-135deg) translateX(-40px) translateY(-40px);
+        }
+        .heart-container.open .heart.right {
+            transform: rotate(135deg) translateX(40px) translateY(-40px);
+        }
+        .heart-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s 0.5s ease;
+            white-space: nowrap;
+        }
+        .heart-container.open .heart-message {
+            opacity: 1;
+        }
+        /* Floating hearts background animation */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 2rem;
+            color: rgba(255, 192, 203, 0.5);
+            animation: floatUp 10s infinite;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Background floating hearts -->
+    <div class="floating-hearts" id="floating-hearts-container"></div>
+
+    <div class="container mx-auto px-4 py-8 min-h-screen flex flex-col items-center justify-center text-center">
+        
+        <!-- Main Title -->
+        <header class="mb-8 animate-fade-in-down">
+            <h1 class="font-playfair text-4xl md:text-6xl font-bold text-white shadow-lg rounded-xl p-4">For My Pretty Baby jii - Stuti</h1>
+        </header>
+
+        <!-- Surprise Heart Section -->
+        <main class="flex flex-col items-center">
+            <div class="bg-white/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-lg w-full text-center mb-12">
+                <h2 class="font-playfair text-2xl md:text-3xl font-semibold mb-4 text-rose-800">A little surprise for you...</h2>
+                <p class="text-lg mb-6">Click on the heart below to open it!</p>
+                <div id="heart-box" class="heart-container mx-auto flex items-center justify-center">
+                    <div class="heart left"></div>
+                    <div class="heart right"></div>
+                    <div class="heart-message text-xl font-bold text-white">Meri Pyariee si cutiee putiee! ❤️</div>
+                </div>
+            </div>
+
+            <!-- Beauty Appreciation Section -->
+            <section class="bg-white/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-lg w-full mb-12 transform transition-transform duration-500 hover:scale-105">
+                <h2 class="font-playfair text-3xl font-bold text-center mb-4 text-rose-800">A Note on Your Beauty</h2>
+                <div class="flex justify-center mb-4">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-rose-500"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l-.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </div>
+                <p class="text-lg italic text-center text-gray-700">"I'm not sure which is more beautiful: the sparkle in your eyes, the warmth of your smile, ya tumhari pyarie pyarie harkate. You are a work of art. Aur hum to achche bachche hai hi😋"</p>
+            </section>
+
+             <!-- Pet Name Section -->
+            <section class="bg-white/50 backdrop-blur-sm p-6 rounded-2xl shadow-2xl max-w-lg w-full mb-12 text-center transform transition-transform duration-500 hover:scale-105">
+                <h3 class="font-playfair text-2xl font-bold text-rose-800">To Meri Pyari Tulsi</h3>
+                <p class="text-lg italic text-gray-700 mt-2">"Haa, ye naam bhi aapka bahut pyaraa saa haii😋"</p>
+            </section>
+
+             <!-- Reasons I Love You Section -->
+            <section class="bg-white/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-lg w-full transform transition-transform duration-500 hover:scale-105">
+                <h2 class="font-playfair text-3xl font-bold text-center mb-6 text-rose-800">Why You're So Special to Me</h2>
+                <div id="reasons-carousel" class="relative h-40">
+                    <!-- Reasons will be injected here by JS -->
+                </div>
+                 <button id="next-reason" class="mt-4 bg-rose-500 text-white font-bold py-2 px-6 rounded-full hover:bg-rose-600 transition-colors duration-300 shadow-lg">Next Reason</button>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-white/80">
+            <p>Made with all my love, just for you.</p>
+            <p class="mt-2">aapke pyare Arpit ke taraf se ye lo😋</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heartBox = document.getElementById('heart-box');
+            heartBox.addEventListener('click', () => {
+                heartBox.classList.toggle('open');
+            });
+            
+            // --- Floating Hearts Effect ---
+            const heartsContainer = document.getElementById('floating-hearts-container');
+            function createFloatingHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '&#10084;'; // Heart character
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5 to 10 seconds
+                heart.style.fontSize = `${Math.random() * 1 + 1}rem`; // 1rem to 2rem
+                heartsContainer.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000); // Remove after animation
+            }
+            setInterval(createFloatingHeart, 500);
+
+            // --- Reasons Carousel ---
+            const reasons = [
+                "The way your laugh can make my whole day better.",
+                "How you always know how to make me smile, even when I'm down.",
+                "Your passion and drive for the things you believe in.",
+                "The way you look at me.",
+                "Kyukiii kyukiii last me aap meri pyarie si paglu baby ho."
+            ];
+
+            let currentReasonIndex = 0;
+            const carouselContainer = document.getElementById('reasons-carousel');
+            const nextButton = document.getElementById('next-reason');
+
+            function showReason(index) {
+                // Clear previous reasons
+                carouselContainer.innerHTML = '';
+
+                // Create new reason element
+                const reasonEl = document.createElement('p');
+                reasonEl.className = 'text-xl text-center text-gray-700 p-4 absolute w-full transition-opacity duration-500 ease-in-out';
+                reasonEl.textContent = reasons[index];
+                reasonEl.style.opacity = 0;
+                
+                carouselContainer.appendChild(reasonEl);
+
+                // Fade in
+                setTimeout(() => {
+                   reasonEl.style.opacity = 1;
+                }, 50);
+            }
+
+            nextButton.addEventListener('click', () => {
+                currentReasonIndex = (currentReasonIndex + 1) % reasons.length;
+                showReason(currentReasonIndex);
+            });
+            
+            // Show the first reason initially
+            showReason(0);
+
+        });
+    </script>
+</body>
+</html>
+
